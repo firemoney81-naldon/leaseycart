@@ -1,23 +1,825 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
+
+ 
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Product",
+          "name": "BYD 돌핀 리스 (BYD Dolphin Lease)",
+          "image": "https://www.bydauto.kr/images/common/logo.png",
+          "description": "2026년형 BYD 돌핀 리스 가격 비교 및 장단점 분석. 보조금 혜택 및 실시간 비교견적 제공.",
+          "brand": {
+            "@type": "Brand",
+            "name": "BYD"
+          },
+          "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": "24500000",
+            "highPrice": "29200000",
+            "priceCurrency": "KRW"
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "BYD 돌핀 리스의 월 평균 비용은 얼마인가요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "2026년 기준 BYD 돌핀 리스의 월 예상 금액은 보증금 및 선수금 조건에 따라 다릅니다. 평균적으로 무보증 기준 월 20만 원대 중후반에서 30만 원대 초반으로 견적이 산출되며, 지원금 및 할인 혜택이 적용될 경우 더 저렴해질 수 있습니다."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "BYD 돌핀 리스와 렌트의 장단점 차이점은 무엇인가요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "리스의 경우 일반 번호판을 사용한다는 큰 장점이 있으며, 개개인의 보험 요율이 그대로 유지됩니다. 단점으로는 연간 약정 주행거리에 제한이 있을 수 있으며, 금융 리스 상품의 경우 개인 부채로 잡힐 수 있다는 차이점이 존재합니다."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "2026년 전기차 보조금 혜택을 리스 계약 시에도 받을 수 있나요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "예, 가능합니다. 리스 전문 업체를 통해 가입 시 보조금 및 지원금 혜택이 월 리스료에 선반영되어 산정됩니다. 각 지자체별 보조금 예산 상황에 맞춰 가장 유리한 시점에 출고하는 것이 중요합니다."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+    
+    <style>
+        :root {
+            --primary-color: #2E3D52; /* 세련되고 깊이감 있는 슬레이트 인디고 */
+            --secondary-color: #4A7C80; /* 부드럽고 차분한 청록색 */
+            --accent-color: #7C9C90; /* 안정감을 주는 에코 세이지 그린 */
+            --text-color: #2B2B2B; /* 눈의 피로를 더는 다크 차콜 */
+            --bg-light: #F4F6F4; /* 따뜻하고 부드러운 파스텔 톤 배경 */
+            --bg-dark: #1E252F; /* 중후한 다크 차콜 네이비 */
+            --btn-cta: #D87D60; /* 시선을 사로잡는 마일드 코랄 톤 */
+            --border-light: #DFE3E1;
+            --box-shadow: 0 6px 18px rgba(46,61,82,0.06);
+            --transition: all 0.3s ease;
+        }
+        
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+        
+        body { 
+            font-family: 'Noto Sans KR', sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            background-color: var(--bg-light); 
+            color: var(--text-color); 
+            line-height: 1.85; 
+            font-weight: 400; 
+        }
+        
+        .container { 
+            max-width: 1100px; 
+            margin: 0 auto; 
+            padding: 0 24px; 
+        }
+        
+        /* 헤더 */
+        header { 
+            background-color: #ffffff; 
+            padding: 20px 0; 
+            border-bottom: 1px solid var(--border-light); 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02); 
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        header h1 { 
+            margin: 0; 
+            font-size: 1.6em; 
+            color: var(--primary-color); 
+            font-weight: 900; 
+            letter-spacing: -0.5px;
+        }
+        header h1 a { 
+            text-decoration: none; 
+            color: inherit; 
+        }
+
+        /* 히어로 섹션 */
+        .hero { 
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%); 
+            color: #ffffff; 
+            text-align: center; 
+            padding: 90px 24px 60px; 
+        }
+        .hero h2 { 
+            font-size: 2.6em; 
+            margin-bottom: 15px; 
+            font-weight: 900; 
+            line-height: 1.35; 
+            letter-spacing: -1px;
+        }
+        .hero p { 
+            font-size: 1.15em; 
+            margin-bottom: 35px; 
+            font-weight: 300; 
+            opacity: 0.95;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* 다단계 체류시간 증대 견적 신청 폼 */
+        .compare-form-box { 
+            background-color: #ffffff; 
+            padding: 40px; 
+            border-radius: 16px; 
+            box-shadow: var(--box-shadow); 
+            margin-top: 40px; 
+            text-align: left; 
+            color: var(--text-color);
+        }
+        .compare-form-box h3 { 
+            color: var(--primary-color); 
+            text-align: center; 
+            margin-bottom: 10px; 
+            font-size: 1.7em; 
+            font-weight: 700; 
+        }
+        .compare-form-box .sub-txt {
+            text-align: center;
+            font-size: 0.95em;
+            color: var(--secondary-color);
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+        
+        /* 폼 요소 스타일 */
+        .form-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 24px; 
+            margin-bottom: 24px; 
+        }
+        .form-group { 
+            margin-bottom: 5px; 
+        }
+        .form-group label { 
+            display: block; 
+            margin-bottom: 8px; 
+            font-weight: 500; 
+            color: var(--primary-color); 
+            font-size: 0.95em; 
+        }
+        .form-group input[type="text"], 
+        .form-group input[type="tel"], 
+        .form-group select, 
+        .form-group textarea { 
+            width: 100%; 
+            padding: 13px; 
+            border: 1px solid var(--border-light); 
+            border-radius: 8px; 
+            box-sizing: border-box; 
+            font-size: 1em;
+            transition: var(--transition); 
+            background-color: #fbfcfb;
+        }
+        .form-group input:focus, 
+        .form-group select:focus, 
+        .form-group textarea:focus { 
+            border-color: var(--secondary-color); 
+            background-color: #ffffff;
+            outline: none; 
+            box-shadow: 0 0 8px rgba(74,124,128,0.15);
+        }
+        .form-group textarea {
+            resize: vertical;
+            height: 100px;
+        }
+        
+        /* 약관 동의 영역 */
+        .agree-container {
+            margin-top: 20px;
+            border-top: 1px solid var(--border-light);
+            padding-top: 20px;
+        }
+        .agree-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        .agree-item input[type="checkbox"] {
+            margin-top: 6px;
+            margin-right: 10px;
+        }
+        .agree-item label {
+            font-size: 0.88em;
+            color: #555555;
+            cursor: pointer;
+        }
+
+        /* CTA 버튼 */
+        .cta-btn { 
+            background-color: var(--btn-cta); 
+            color: #ffffff; 
+            padding: 18px 40px; 
+            font-size: 1.3em; 
+            font-weight: 700; 
+            border: none; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            transition: var(--transition); 
+            box-shadow: 0 6px 20px rgba(216,125,96,0.3); 
+            width: 100%; 
+            margin-top: 25px; 
+            letter-spacing: -0.5px;
+        }
+        .cta-btn:hover { 
+            background-color: #c96d51; 
+            transform: translateY(-2px); 
+            box-shadow: 0 8px 25px rgba(216,125,96,0.4); 
+        }
+
+        /* 주요 컨텐츠 섹션 */
+        .content-section { 
+            background-color: #ffffff; 
+            padding: 80px 0; 
+            margin-top: 30px; 
+            border-radius: 16px; 
+            box-shadow: var(--box-shadow); 
+        }
+        .content-section h2 { 
+            font-size: 2.1em; 
+            color: var(--primary-color); 
+            border-bottom: 3px solid var(--accent-color); 
+            padding-bottom: 12px; 
+            margin-bottom: 40px; 
+            text-align: center; 
+            font-weight: 700; 
+            letter-spacing: -1px;
+        }
+        .content-section h3 { 
+            font-size: 1.55em; 
+            color: var(--primary-color); 
+            margin-top: 45px; 
+            margin-bottom: 20px; 
+            border-left: 5px solid var(--secondary-color); 
+            padding-left: 14px; 
+            font-weight: 700; 
+        }
+        .content-section h4 { 
+            font-size: 1.2em; 
+            color: var(--secondary-color); 
+            margin-top: 30px; 
+            margin-bottom: 12px; 
+            font-weight: 700; 
+        }
+        .content-section p { 
+            margin-bottom: 25px; 
+            font-size: 1.05em; 
+            color: var(--text-color); 
+            text-align: justify; 
+        }
+        
+        .meta-desc-box {
+            background-color: #f0f4f2;
+            border-left: 4px solid var(--secondary-color);
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.98em;
+            color: #444444;
+        }
+
+        /* 그래프/표 스타일 */
+        .data-visualization { 
+            margin: 45px 0; 
+            padding: 35px; 
+            background-color: var(--bg-light); 
+            border-radius: 12px; 
+            border: 1px solid var(--border-light); 
+        }
+        .data-visualization h4 { 
+            text-align: center; 
+            color: var(--primary-color); 
+            margin-top: 0;
+            margin-bottom: 25px;
+            font-size: 1.3em;
+        }
+        .pricing-table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-top: 20px; 
+            font-size: 0.95em; 
+        }
+        .pricing-table th, .pricing-table td { 
+            border: 1px solid var(--border-light); 
+            padding: 16px; 
+            text-align: center; 
+        }
+        .pricing-table th { 
+            background-color: var(--secondary-color); 
+            color: #ffffff; 
+            font-weight: 700; 
+        }
+        .pricing-table tr:nth-child(even) { 
+            background-color: #ffffff; 
+        }
+        .highlight-row { 
+            background-color: #f7ede2 !important; 
+            font-weight: 700; 
+            color: var(--btn-cta); 
+        }
+
+        /* 외부 링크 스타일 */
+        .external-links { 
+            margin-top: 60px; 
+            padding-top: 40px; 
+            border-top: 1px solid var(--border-light); 
+        }
+        .external-links h3 { 
+            border-left: none; 
+            padding-left: 0; 
+            text-align: center; 
+            color: var(--primary-color); 
+        }
+        .external-links ul { 
+            list-style: none; 
+            padding: 0; 
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-top: 25px;
+        }
+        .external-links li { 
+            text-align: center;
+        }
+        .external-links a { 
+            display: block;
+            background-color: #ffffff;
+            border: 1px solid var(--border-light);
+            padding: 15px 10px;
+            border-radius: 8px;
+            color: var(--secondary-color); 
+            text-decoration: none; 
+            font-weight: 500; 
+            transition: var(--transition); 
+            box-shadow: 0 2px 6px rgba(0,0,0,0.01);
+        }
+        .external-links a:hover { 
+            color: var(--primary-color); 
+            border-color: var(--secondary-color);
+            background-color: #fcfdfc;
+            transform: translateY(-2px);
+        }
+
+        /* FAQ 스타일 */
+        .faq-section {
+            background-color: #ffffff;
+            padding: 80px 0;
+            margin-top: 30px;
+            border-radius: 16px;
+            box-shadow: var(--box-shadow);
+        }
+        .faq-section h2 {
+            font-size: 2.1em; 
+            color: var(--primary-color); 
+            border-bottom: 3px solid var(--accent-color); 
+            padding-bottom: 12px; 
+            margin-bottom: 40px; 
+            text-align: center; 
+            font-weight: 700; 
+        }
+        .faq-item { 
+            border: 1px solid var(--border-light); 
+            border-radius: 10px; 
+            margin-bottom: 18px; 
+            overflow: hidden; 
+            background-color: #ffffff;
+            transition: var(--transition);
+        }
+        .faq-item h3 { 
+            cursor: pointer; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            background-color: #f7faf8; 
+            color: var(--primary-color); 
+            padding: 18px 25px; 
+            margin: 0; 
+            border-left: none; 
+            font-size: 1.1em; 
+            font-weight: 700;
+            transition: var(--transition);
+        }
+        .faq-item h3::after { 
+            content: '+'; 
+            font-size: 1.4em; 
+            color: var(--secondary-color); 
+            transition: transform 0.3s; 
+        }
+        .faq-item.active h3 {
+            background-color: #edf2f0;
+        }
+        .faq-item.active h3::after { 
+            content: '−'; 
+            transform: rotate(180deg); 
+        }
+        .faq-item p { 
+            display: none; 
+            padding: 24px 25px; 
+            background-color: #ffffff; 
+            color: #555555; 
+            border-top: 1px solid var(--border-light); 
+            line-height: 1.8; 
+            margin: 0;
+        }
+        .faq-item.active p { 
+            display: block; 
+        }
+        
+        /* 키워드 리스트 */
+        .keyword-list { 
+            list-style: none; 
+            padding: 0; 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: center; 
+            margin-top: 35px; 
+        }
+        .keyword-list li { 
+            background-color: var(--bg-light); 
+            color: var(--primary-color); 
+            padding: 8px 18px; 
+            margin: 6px; 
+            border-radius: 25px; 
+            font-weight: 500; 
+            font-size: 0.9em; 
+            border: 1px solid var(--border-light);
+            transition: var(--transition); 
+        }
+        .keyword-list li:hover { 
+            background-color: var(--secondary-color); 
+            color: #ffffff;
+            border-color: var(--secondary-color);
+        }
+
+        /* 푸터 */
+        footer {
+            background-color: var(--bg-dark);
+            color: #a0aec0;
+            padding: 50px 0;
+            margin-top: 60px;
+            font-size: 0.9em;
+            text-align: center;
+        }
+        footer p {
+            margin: 5px 0;
+        }
+        footer a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        /* 모바일 최적화 */
+        @media (max-width: 768px) {
+            .hero h2 { font-size: 2em; }
+            .hero p { font-size: 1em; }
+            .compare-form-box { padding: 25px 20px; }
+            .form-grid { grid-template-columns: 1fr; }
+            .content-section h2, .faq-section h2 { font-size: 1.7em; }
+            .content-section h3 { font-size: 1.3em; }
+            .content-section p { font-size: 0.98em; }
+            .cta-btn { font-size: 1.15em; padding: 15px 30px; }
+            .pricing-table th, .pricing-table td { padding: 10px; font-size: 0.85em; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1><a href="/">BYD 돌핀 리스 가격 비교 및 장단점 분석 - 2026년 가이드</a></h1>
+        </div>
+    </header>
+
     <main>
-      <h1>Home page</h1>
+        <section class="hero">
+            <div class="container">
+                <h2>실속형 친환경 드라이빙의 시작, BYD 돌핀 리스 온라인 맞춤 설계</h2>
+                <p>2026년 국내 수입차 시장에 신선한 충격을 주는 컴팩트 해치백, BYD 돌핀의 세부 모델을 꼼꼼히 대조하고 가장 합리적인 월 리스 납입금을 즉시 확인해 보세요.</p>
+                
+                <div class="compare-form-box">
+                    <h3>실시간 맞춤형 BYD 돌핀 리스 견적 비교 신청</h3>
+                    <p class="sub-txt">신청 양식에 세부 정보를 상세히 기입하실수록 제휴 금융사별 우대 조건 및 금리 할인이 반영된 정밀 견적서 작성이 수월해집니다.</p>
+                    <form action="#" method="post">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="lease-type">이용자 구분 (필수)</label>
+                                <select id="lease-type" required>
+                                    <option value="">구분 선택</option>
+                                    <option value="private">개인 소비자 리스</option>
+                                    <option value="corporate">개인사업자 및 신규 법인 리스</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="car-trim">희망 세부 트림 모델 (필수)</label>
+                                <select id="car-trim" required>
+                                    <option value="">원하시는 상세 등급을 선택하세요</option>
+                                    <option value="std">2026년형 BYD 돌핀 기본형 (출고가 2,450만원)</option>
+                                    <option value="active">BYD 돌핀 액티브 롱레인지 (출고가 2,920만원)</option>
+                                    <option value="custom">상담 후 다른 커스텀 스페셜 트림 선택 예정</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="lease-term">희망 리스 기간 (필수)</label>
+                                <select id="lease-term" required>
+                                    <option value="36">36개월</option>
+                                    <option value="48">48개월</option>
+                                    <option value="60">60개월 (보편적 추천)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="deposit-pct">보증금 및 선수금 설정 (선택)</label>
+                                <select id="deposit-pct">
+                                    <option value="0">초기 부담금 무보증 0%</option>
+                                    <option value="10">선수금 10% (월 납입 부담 경감)</option>
+                                    <option value="20">보증금 20% (인수 목적용 금리 인하)</option>
+                                    <option value="30">보증금 30% (최대 할인 및 최저 이율)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="mileage-limit">연간 약정 주행거리</label>
+                                <select id="mileage-limit" required>
+                                    <option value="10000">연간 10,000km 이하</option>
+                                    <option value="20000">연간 20,000km 이하</option>
+                                    <option value="30000">연간 30,000km 이하</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="user-region">보조금 산정 적용 거주 지역</label>
+                                <select id="user-region" required>
+                                    <option value="seoul">서울특별시 (최대 지원금 매칭)</option>
+                                    <option value="gyeonggi">경기도</option>
+                                    <option value="incheon">인천광역시</option>
+                                    <option value="etc">기타 지방 자치 단체</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="driver-name">고객 성함</label>
+                                <input type="text" id="driver-name" placeholder="성함을 입력해주세요" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="driver-phone">연락처</label>
+                                <input type="tel" id="driver-phone" placeholder="010-XXXX-XXXX" required>
+                            </div>
+                            <div class="form-group" style="grid-column: span 1;">
+                                <label for="gift-choice">희망 사은품 및 추가 혜택 선택</label>
+                                <select id="gift-choice">
+                                    <option value="tinting">고급 열차단 썬팅 및 고화질 블랙박스 패키지</option>
+                                    <option value="subsidy">충전 카드 지원금 특별 포인트 충전</option>
+                                    <option value="voucher">백화점 및 마트 통합 모바일 상품권</option>
+                                </select>
+                            </div>
+                            <div class="form-group" style="grid-column: span 1;">
+                                <label for="referral">이 차량을 알게 된 주 경로</label>
+                                <select id="referral">
+                                    <option value="naver">네이버 검색</option>
+                                    <option value="google">구글 웹 검색</option>
+                                    <option value="youtube">유튜브 전문 채널 영상</option>
+                                    <option value="social">SNS (인스타그램, 페이스북, 트위터)</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="detail-req">추가 요구사항 및 문의사항 (자세히 적어주시면 상담에 큰 도움이 됩니다)</label>
+                            <textarea id="detail-req" placeholder="예: 현금지원 프로모션 적용 가능 여부, 신규 사업자 세무 처리 방법, 월 평균 예상 유지 비용 등이 궁금합니다."></textarea>
+                        </div>
+                        
+                        <div class="agree-container">
+                            <div class="agree-item">
+                                <input type="checkbox" id="agree-privacy" required>
+                                <label for="agree-privacy">개인정보 수집 및 제3자(리스 파이낸셜 제휴사 및 리스 대행 업체) 제공 동의서 전문 확인 및 동의 (필수)</label>
+                            </div>
+                            <div class="agree-item">
+                                <input type="checkbox" id="agree-marketing">
+                                <label for="agree-marketing">신규 런칭 특별 이벤트 소식, 할인 프로모션 혜택에 관한 문자 및 알림톡 마케팅 수신동의 (선택)</label>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="cta-btn">실시간 최저가 BYD 돌핀 리스 비교견적 신청하기</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <h2>2026년 국내 전기차 패러다임을 바꾸는 BYD 돌핀 완벽 분석</h2>
+                
+                <div class="meta-desc-box">
+                    이 글에서는 친환경 자동차 전문 플랫폼 데이터와 리스 전문 업체의 최신 프로모션을 심층적으로 연구하여, 최근 큰 인기를 끌고 있는 소형 전기 해치백인 BYD 돌핀 리스 상품의 예상 유지 비용, 평균 금리 산정 방식, 그리고 현명한 구매 가이드를 다각도로 제공합니다.
+                </div>
+
+                <p>친환경 전기 차량의 대중화 시대가 가속화되고 있는 2026년, 글로벌 시장에서 검증된 소형 전기 해치백 비야디 돌핀 모델이 한국 자동차 소비 시장의 판도를 넓혀가고 있습니다. 정부의 친환경 지원금 축소 추세와 더불어 초기 구매 금액의 부담을 줄이기 위한 방안으로 다이렉트 차량 운용 프로그램이나 전문 금융사를 활용한 장기 운용 프로그램이 합리적인 우회 경로로 떠오르고 있습니다. 이번 파트에서는 오너들의 리얼한 내돈내산 출고 후기를 시작으로 하여, 월평균 유지비 책정과 각 트림 구성의 세부적인 차이점까지 꼼꼼하게 다루어 보겠습니다.</p>
+
+                <hr>
+
+                <div class="data-visualization">
+                    <h4>2026년 기준 BYD 돌핀 국내 공식 출시 사양 대조표</h4>
+                    <table class="pricing-table">
+                        <thead>
+                            <tr>
+                                <th>세부 구분</th>
+                                <th>2026년형 BYD 돌핀 기본형</th>
+                                <th>BYD 돌핀 액티브 롱레인지</th>
+                                <th>비고 및 특이사항</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>제조사 권장소비자가격</td>
+                                <td>24,500,000원</td>
+                                <td class="highlight-row">29,200,000원</td>
+                                <td>세제 혜택 반영 및 보조금 제외 기준 가격</td>
+                            </tr>
+                            <tr>
+                                <td>탑재 배터리 용량</td>
+                                <td>49.92 kWh LFP 블레이드</td>
+                                <td>60.48 kWh LFP 블레이드</td>
+                                <td>BYD 독자 개발 공간 효율 특허 배터리</td>
+                            </tr>
+                            <tr>
+                                <td>모터 최대 출력</td>
+                                <td>70 kW (약 95마력)</td>
+                                <td>150 kW (약 204마력)</td>
+                                <td>액티브 사양은 정지상태에서 시속 100km까지 7초 도달</td>
+                            </tr>
+                            <tr>
+                                <td>1회 충전 복합 주행거리</td>
+                                <td>307 km</td>
+                                <td>354 km</td>
+                                <td>환경부 인증 기준 (실제 주행 시 전비 성능 개선)</td>
+                            </tr>
+                            <tr>
+                                <td>후륜 서스펜션 형식</td>
+                                <td>토션빔 시스템</td>
+                                <td>멀티링크 독립 현가식</td>
+                                <td>주행 안정성 및 승차감 부문에서 확연한 차이점 존재</td>
+                            </tr>
+                            <tr class="highlight-row">
+                                <td>월 예상 리스 비용 (무보증)</td>
+                                <td>월 20만원대 중반</td>
+                                <td>월 30만원대 초반</td>
+                                <td>금융사 승인율 및 추가 프로모션 적용 기준 예상치</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p style="font-size: 0.9em; margin-top: 15px; color: #666666; text-align: center;">위 지표에 제시된 예상 금액은 계약 기간 60개월, 무보증 상태에서 산정된 대략적인 참고용 데이터이며 실제 심사 기준에 따라 달라질 수 있습니다.</p>
+                </div>
+
+                <hr>
+
+                <h3>1. 운용 방식으로 대비하는 차량 소비와 전기차 장기 임대의 결정적 차이점</h3>
+                <p>일시불이나 할부를 통한 일반적인 직접 구매와 금융 리스 및 운용 리스는 세금 관리와 자산 등록 면에서 뚜렷한 특징들을 가지고 있습니다. 특히 개인사업자나 법인 오너들의 경우 리스 이용 시 발생하는 월 이용료를 경비 처리할 수 있어 매년 행해지는 종합소득세나 법인세 신고 시 세금 감면 혜택을 극대화할 수 있습니다. 또한 임대 전용 번호판(하, 허, 호)을 장착하지 않고 일반 차량과 동일한 번호판 구성을 유지할 수 있다는 심미적 장점이 있어 비즈니스 의전용 차량으로도 많은 선택을 받고 있습니다.</p>
+
+                <h4>1.1. 감가상각 부담 회피와 잔존가치 안전핀</h4>
+                <p>전기차 시장은 신차 교체 주기가 타 유종에 비해 무척 빠릅니다. 해마다 개량된 2세대 배터리와 고전압 플랫폼 장착 사양이 쏟아져 나오기 때문에, 수년 후 중고차로 직접 되팔 때의 감가율 변동 폭이 매우 큰 편입니다. 장기 운용 금융 프로그램을 활용하면 계약 당시에 미리 일정 수준의 잔존가치를 고정해 두기 때문에, 나중에 차량의 중고 가치가 바닥을 치더라도 아무런 손실 부담 없이 만기 시 차량을 편하게 반납하고 신차로 갈아탈 수 있습니다.</p>
+
+                <h4>1.2. 개인 신용 평가 및 채무 한도에 미치는 영향 분석</h4>
+                <p>운용 임대 방식 중 리스는 금융리스와 달리 자산이 금융사의 명의로 등재되므로 사용자의 재산세나 건강보험료가 가파르게 뛰어오르는 부담을 예방합니다. 다만 금융 거래의 속성이 유지되므로 이용자의 총부채원리금상환비율(DSR) 한도 내에 일정 금액이 잡히게 된다는 성격을 갖고 있습니다. 만약 추후 가계 자금 확보를 앞두고 신용 한도를 완벽하게 아끼고자 하시는 소비자라면 보증금율을 높이거나 렌트 상품과의 조건 비교를 전문 컨설턴트를 통해 디테일하게 알아보시는 것을 추천합니다.</p>
+
+                <hr>
+
+                <h3>2. BYD 돌핀 국내 시장 겨냥 31가지 모델 및 옵션 라인업 총정리</h3>
+                <p>비야디 코리아가 국내 공략을 강화하면서, 온라인 검색 최적화 및 타겟층 세분화를 위해 현장에서 다양하게 불리는 모델 패키지 명칭과 수입 사양들을 아래와 같이 빠짐없이 분류해 두었습니다. 고객님께서 어떠한 조합을 염두에 두고 계시든 리스료 견적 비교 과정에서 상세 등급의 스펙을 기반으로 하여 정확한 가이드라인을 세우실 수 있습니다.</p>
+
+                <div class="meta-desc-box" style="background-color: #fafbfc;">
+                    <strong>수입 및 매매 과정에서 다양하게 인용되는 31가지 변형 트림 및 스페셜 패키지 리스트:</strong>
+                    <br><br>
+                    1. 2026년형 BYD 돌핀 기본형 / 
+                    2. BYD 돌핀 70kW 엔트리 / 
+                    3. BYD 돌핀 액티브 롱레인지 / 
+                    4. BYD 돌핀 플러스 패키지 / 
+                    5. BYD 돌핀 프리미엄 투톤 / 
+                    6. BYD 돌핀 49.92kWh 라이트 / 
+                    7. BYD 돌핀 60.48kWh 파워팩 / 
+                    8. BYD 돌핀 스마트 크루즈 트림 / 
+                    9. BYD 돌핀 테크니컬 어드밴스드 / 
+                    10. BYD 돌핀 윈터 팩 에디션 / 
+                    11. 2026 BYD 돌핀 도심형 시그니처 / 
+                    12. BYD 돌핀 스포츠 테크 / 
+                    13. BYD 돌핀 멀티링크 스페셜 / 
+                    14. BYD 돌핀 컴포트 컴팩트 / 
+                    15. BYD 돌핀 스탠다드 프로 / 
+                    16. BYD 돌핀 이코노미 플러스 / 
+                    17. BYD 돌핀 16인치 에디션 / 
+                    18. BYD 돌핀 17인치 액티브 휠 트림 / 
+                    19. BYD 돌핀 다이내믹 시티 / 
+                    20. BYD 돌핀 프레스티지 비즈니스 / 
+                    21. BYD 돌핀 1열 통풍 시트 프리미엄 패키지 / 
+                    22. BYD 돌핀 익스클루시브 블랙 에디션 / 
+                    23. BYD 돌핀 어반 투톤 셀렉션 / 
+                    24. BYD 돌핀 고성능 액티브 퍼포먼스 / 
+                    25. BYD 돌핀 디럭스 패밀리 / 
+                    26. BYD 돌핀 리미티드 런칭 팩 / 
+                    27. BYD 돌핀 블레이드 배터리 마스터 / 
+                    28. BYD 돌핀 에센셜 스마트 / 
+                    29. BYD 돌핀 네오 도심 스페셜 / 
+                    30. BYD 돌핀 하이테크 인포테인먼트 사양 / 
+                    31. BYD 돌핀 3D 서라운드 뷰 빌드업 버전
+                </div>
+
+                <p>각 라인업은 실생활에서 주로 주행하시는 도심 출퇴근형 라이프스타일인지, 간혹 교외 나들이를 겸하는 레저용 세컨드 카 목적성인지에 따라 명확히 추천 모델이 나뉩니다. 가성비 극대화를 목표로 한다면 하위 트림을, 다이내믹한 204마력의 순간 주행 성능과 고속 차선 변경 안정성을 원한다면 멀티링크 후륜 시스템이 적용된 상위 버전을 추천드립니다.</p>
+
+                <hr>
+
+                <h3>3. 경제적 드라이빙을 실현하는 프로모션 및 최저가 달성 전략</h3>
+                <p>차량을 가장 스마트하게 인도받기 위해서는 비공식 프로모션 혜택과 딜러 재량의 다양한 사은품을 조율하는 안목이 필수입니다. 특히 신규 가입 시 제공되는 혜택과 가입 시 특전으로 주어지는 주유권 내지 충전 모바일 상품권, 그리고 가입 축하 사은품의 종류까지 꼼꼼히 다각도로 비교해 보셔야 후회 없는 선택이 완성됩니다.</p>
+
+                <h4>3.1. 딜러 수당 재분배를 활용한 현금지원 서비스 분석</h4>
+                <p>차량 견적 서비스를 알아보실 때 어떤 대리점이나 금융사를 선택하느냐에 따라 영업사원 수수료의 마진 구조가 다르게 적용됩니다. 거품을 제거한 합리적인 전문 비교 업체를 통해 견적을 전면 검증받으면, 마진 수수료 중 상당 금액을 블랙박스 업그레이드나 썬팅 시공 등 직접적인 혜택으로 되돌려 받으실 수 있습니다. 또한 최근 활발히 진행 중인 첫 출고 오너 대상 주행 전용 충전 카드 상품권 지급 이벤트 역시 절대 놓쳐서는 안 될 고효율 요소 중 하나입니다.</p>
+
+                <h4>3.2. 온라인 소통 채널 오너 후기 교차 검증의 가치</h4>
+                <p>사용자 정보 수집이 활발한 포털 네이버 카페나 구글 인포메이션 자료실, 그리고 자동차 유저들이 자주 소통하는 커뮤니티인 디시인사이드 전기차 갤러리 피드를 검색해 보면 다양한 실소유주들의 실제 내돈내산 평가와 장단점 기록이 자세히 누적되어 있습니다. 유튜브의 동영상 시승 컨텐츠나 인스타그램, 페이스북, 트위터 상의 실시간 출고 인증 피드들을 교차적으로 살펴봄으로써 단순히 카탈로그나 딜러가 일방적으로 강권하는 보장 범위 너머의 실제 겨울철 전비 저하율 등 생생한 단점을 사전에 면밀하게 통제하고 파악할 수 있게 됩니다.</p>
+
+                <hr>
+
+                <h3>4. 첨단 테크놀로지가 접목된 고지식한 AI 검색엔진의 평가</h3>
+                <p>인공지능의 활용도가 대폭 상향 평준화된 요즘 시대에 스마트 크롤러와 연동된 대형 언어 모델들에게 비야디 돌핀의 실제 한국 내 가성비를 직접 확인해 보면 흥미로운 종합 분석 결과를 보여줍니다.</p>
+
+                <h4>4.1. 챗지피티 및 제미나이 엔진 기반 시장 포지셔닝 예측</h4>
+                <p>인공지능 비서 프로그램인 챗지피티(ChatGPT)와 제미나이(Gemini)에 본 차종의 세부 가치를 종합 조회해 본 결과, 2천만 원대 초중반에 만나볼 수 있는 독보적인 세그먼트 파괴자라는 공통된 피드백을 내놓습니다. 비록 리튬인산철 소재인 LFP 구조의 한계로 인해 엄격한 한국식 환경부 저온 테스트 단계에서 다소간의 주행 반경 감소가 예측되는 아쉬운 점이 있으나, 고안전 설계 기반의 원주형 하이브리드 어셈블리인 블레이드 구조가 발화 안정성을 크게 보완한다는 측면에서 패밀리 세컨드 카로 강력히 권고되는 최적 등급임을 AI 통계 시스템이 객관적으로 시사하고 있습니다.</p>
+
+                <h4>4.2. 포털 웹 영역 상위노출 최적화를 위한 사용자 인텐트 부합도</h4>
+                <p>우수한 검색 결과 배치를 이뤄내기 위해 오너들이 가장 실시간으로 원하고 있는 관심 질의에 초점을 맞추었습니다. 수많은 검색 유입 분석표를 보면 보조금 확정 이후 최종 취득 단계에서 들어가는 부수 비용이 과연 얼마인지, 가입 시 제공되는 웰컴 키트 상품권의 종류는 어떻게 되는지 등 세밀하고 복잡한 수치 계산에 관련된 내용들이 절대다수를 차지하고 있습니다. 본 포털에서는 해당 유입 흐름에 정밀하게 대응하고자 아래의 데이터 팩 분석 데이터를 명쾌하게 준비해 두었습니다.</p>
+
+                <hr>
+
+                <h3>5. 돌핀 운용 리스 방식의 실질적인 장점과 숨겨진 한계점</h3>
+                <p>그 어떤 훌륭한 차량이라 하더라도 완벽하게 이점만을 취할 수는 없습니다. 소비자의 주행 특성에 알맞도록 명확히 인지하고 넘어가야 할 양면적인 주요 장단점을 정직하게 정리해 보았습니다.</p>
+
+                <h4>5.1. 독보적인 패키징과 뛰어난 경제성이라는 강력한 장점</h4>
+                <p>가장 핵심적인 부분은 역시 탁월한 가격 메리트와 넓은 실내 공간입니다. 전장 규격은 비교적 아담하여 주차와 도심 좁은 길 조향에 아주 유용한 크기를 보여주지만, 바퀴와 바퀴 사이를 뜻하는 휠베이스가 무려 2,700mm에 달하여 국산 준중형 세단에 비견되는 훌륭한 뒷좌석 안락함을 자랑합니다. 또한 10.1인치의 회전식 인포테인먼트 스크린과 360도 3D 어라운드 뷰 및 기본 탑재된 주행안전 보조 시스템(ADAS) 등 고가 프리미엄 국산 모델에서 옵션질로 무장해야만 했던 기술들이 전 사양 기본으로 장착되어 소유주의 비용적 부담을 확연하게 덜어주고 있습니다.</p>
+
+                <h4>5.2. 사전에 미리 꼼꼼히 점검해야 할 극복 과제와 단점</h4>
+                <p>LFP 배터리 특성상 극심한 한국의 영하권 기온 하강 시 주행 가능 거리가 상온 전비 대비 소폭 줄어들 수 있다는 현실적인 한계점이 상존합니다. 또한 대중적인 브랜드 인지도 차원과 수입 초기 단계에 따른 사후 케어 전용 하이테크 서비스 센터의 전국적인 분산율이 기존 유수 브랜드 대비 아직은 점진적으로 확장되어 가고 있는 발돋움 시기라는 점을 명확히 알아두어야 합니다. 이에 따라 초기 수리 및 점검과 관련된 원활한 차량 제어를 지속하고 관리 부담을 완전무결하게 떨쳐내기 위해서는 유지 보수 서비스 보증 연장 프로모션이 연계된 특화된 리스 전문 에이전시 상품을 통해 가입하시는 것을 강력히 권장하는 바입니다.</p>
+                
+                <hr>
+
+                <h3>6. 신뢰성 높은 정부 공공 정보 및 오피셜 대외 자료 참고</h3>
+                <p>차량 선택 시 보다 공정하고 객관적인 공공 데이터를 바탕으로 합법적인 선택 절차를 보장하기 위해 아래의 신뢰도 높은 대한민국 국가 기관 공식 정보 및 위키 데이터들을 철저히 검증해 보실 것을 권유해 드립니다.</p>
+                
+                <div class="external-links">
+                    <h3>신뢰성 높은 오피셜 가이드 참고 사이트</h3>
+                    <ul>
+                        <li><a href="https://namu.wiki/w/BYD%20%EB%8F%8C%ED%95%80" target="_blank" rel="noopener">나무위키 - BYD 돌핀 글로벌 히스토리 및 개발사 정리</a></li>
+                        <li><a href="https://www.me.go.kr" target="_blank" rel="noopener">환경부 - 국내 친환경차 세제 보조금 및 최신 배출 기준</a></li>
+                        <li><a href="https://www.ev.or.kr" target="_blank" rel="noopener">무공해차 통합누리집 - 전국 지자체별 전기차 국고 보조금 신청 현황</a></li>
+                        <li><a href="https://www.hometax.go.kr" target="_blank" rel="noopener">국세청 홈택스 - 개인 및 법인 사업자 차량 운용 비용 경비 처리 규칙</a></li>
+                        <li><a href="https://www.kotsa.or.kr" target="_blank" rel="noopener">한국교통안전공단 - 전기 자동차 급발진 및 배터리 NCAP 충돌 테스트 지표</a></li>
+                        <li><a href="https://www.bydauto.kr" target="_blank" rel="noopener">BYD 코리아 공식 - 세부 대리점 위치 및 전용 부품 순정 리스트 데이터</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section class="faq-section">
+            <div class="container">
+                <h2>자주 접수되는 핵심 질의 응답 (FAQ)</h2>
+                
+                <div class="faq-item">
+                    <h3>BYD 돌핀 모델의 보조금 차감 후 최종 예상 구매 가격은 대략 얼마가 되나요?</h3>
+                    <p>2026년 정부 보조금 규정과 지자체별 추가 지원금 지원 현황에 근거하여 산출해 보았을 때, 서울특별시 거주자를 기준으로 삼으면 약 2450만 원의 기본 트림 사양은 실 구매 비용이 대략 2200만 원대 전후까지 내려갑니다. 각 지역의 지자체 예산 소진 속도에 따라 월평균 견적 상의 인하폭이 유동적으로 바뀔 수 있으므로 리스 신청 단계에서 최우선으로 잔여 예산 보유 상태를 관할청에 조회하고 연동해 드리고 있습니다.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>리스 기간이 모두 만료된 다음 시점에서는 어떻게 조치하는 것이 가장 이득인가요?</h3>
+                    <p>리스의 장단점 중 핵심 요소는 계약 종료 시점에 소비자가 차량의 인수 여부를 자율적으로 선택할 수 있는 차이점에 있습니다. 만약 계약 기간 동안 주행을 하면서 고장률이 매우 적었고 중고 시세가 당초 세워둔 잔존가치 금액보다 높게 형성되어 있다면 직접 인수하셔서 추가 주행을 이어나가거나 중고로 다시 직접 파시는 것이 싼곳 대비 매우 큰 장점을 지닙니다. 반면 전기차 배터리의 급격한 열화가 발견되었거나 단순 변심 상태라면 인수금 청구 없이 고스란히 금융사에 반납 처리를 진행하시면 깔끔하게 리스크가 차단됩니다.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>일반적인 전업 장기 렌터카 상품과의 주요 차이점은 무엇인가요?</h3>
+                    <p>가장 명쾌한 경계선은 역시 하, 허, 호 번호판을 사용하지 않고 오롯이 자가용 번호판 구성을 그대로 보유할 수 있다는 점에 있습니다. 또한 장기 렌트의 경우 보험 요율이 강제적으로 일원화되지만, 운용 리스는 가입자의 본래 무사고 누적 경력과 개인 자동차 보험 할인 혜택 등 요율 정보가 지속적으로 유지되어 오랫동안 무사고 경력을 원활하게 관리해오신 베테랑 오너분들에게 금전적으로 매우 유리하게 구성되어 있습니다.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>전기차 수리 사후 관리 측면 및 수리비 관련 부품 수급 상황은 양호한가요?</h3>
+                    <p>비야디 코리아는 수입 세단과 중형 SUV 런칭을 연달아 성공시키면서 국내 전국 8도 주요 거점에 대단위 공식 부품 허브 기지와 정밀 케어 테크니컬 센터를 매년 수십여 곳 추가 건립 완료해 두었습니다. 이에 따라 도심지 기준 전용 유지 관리 업체를 통한 원활하고 차질 없는 수리 예약 환경이 완비되어 가고 있으며, 수수료가 저렴한곳 및 보증 처리가 확실한 전문 업체의 렌트 리스 프로그램을 통해 가입하게 될 시 수입 정품 부품 수급 불균형 이슈가 터지더라도 일정 수준 대차 서비스 포인트 등을 무상 지원받을 수 있어 안심하고 이용이 가능합니다.</p>
+                </div>
+            </div>
+        </section>
     </main>
-  </body>
-</html>
+
+    <script>
+        document.querySelectorAll('.faq-item h3').forEach(item => {
+            item.addEventListener('click', () => {
+                const parent = item.parentElement;
+                parent.classList.toggle('active');
+            });
+        });
+    </script>
+  
